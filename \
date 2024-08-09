@@ -1,0 +1,52 @@
+#include"Player.h"
+#include"Math.h"
+#include<iostream>
+using namespace std;
+void Player::Initialize(){
+}
+void Player::Load(){
+	player.loadFromFile("/home/dhruv/dhruv/sfml/learning/TexturesAndSprite/Texture/BODY_male.png");
+        playerSprite.setTexture(player);
+        playerSprite.setTextureRect(IntRect(256,128,64,64));
+        playerSprite.setPosition(Vector2f(100,100));
+	arrow.loadFromFile("/home/dhruv/dhruv/sfml/learning/TexturesAndSprite/Texture/WEAPON_arrow.png");
+        arrowSprite.setTexture(arrow);
+        arrowSprite.setTextureRect(IntRect(256,192,64,64));
+	arrowSprite.rotate(30);
+}
+void Player::Update(Enemy *enemy){if(Keyboard::isKeyPressed(Keyboard::D)){
+                        Vector2f position=playerSprite.getPosition();
+                        playerSprite.setPosition(position+Vector2f(0.5,0));
+                }
+                if(Keyboard::isKeyPressed(Keyboard::W)){
+                        Vector2f position=playerSprite.getPosition();
+                        playerSprite.setPosition(position+Vector2f(0,-0.5));
+                }
+                if(Keyboard::isKeyPressed(Keyboard::A)){
+                        Vector2f position=playerSprite.getPosition();
+                        playerSprite.setPosition(position+Vector2f(-0.5,0));
+                }
+                if(Keyboard::isKeyPressed(Keyboard::S)){
+                        Vector2f position=playerSprite.getPosition();
+                        playerSprite.setPosition(position+Vector2f(0,0.5));
+                }
+		float arrowSpeed=5.0f;
+
+		if(Mouse::isButtonPressed(Mouse::Button::Left)){
+                        arrows.push_back(arrowSprite);
+                        int i=arrows.size()-1;
+                        arrows[i].setPosition(Player::playerSprite.getPosition());
+                }
+                for(int i=0;i<arrows.size();i++){
+                        Vector2f arrowDirection=enemy->EnemySprite.getPosition()-arrows[i].getPosition();
+                        arrowDirection=Math::NormalizeVector(arrowDirection);
+                        arrows[i].setPosition(arrows[i].getPosition()+arrowDirection*arrowSpeed);
+                }
+}
+void Player::Draw(sf::RenderWindow * window){
+	window->draw(playerSprite);
+	for(int i=0;i<arrows.size();i++){
+                        window->draw(arrows[i]);
+                }
+
+}

@@ -1,0 +1,3 @@
+/home/dhruv/RPG-C-SFML/RPG/build/CMakeFiles/RPG.dir
+/home/dhruv/RPG-C-SFML/RPG/build/CMakeFiles/edit_cache.dir
+/home/dhruv/RPG-C-SFML/RPG/build/CMakeFiles/rebuild_cache.dir
