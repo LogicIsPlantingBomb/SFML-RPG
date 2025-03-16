@@ -1,4 +1,4 @@
-# RPG Game (SFML and C++)
+# RPG Game (SFML and C++).
 
 ## Overview
 This is a simple RPG game built using **C++** and **SFML**. The game includes a player character, enemies, projectiles, and collision detection. It features smooth animations, player movement, and combat mechanics.
